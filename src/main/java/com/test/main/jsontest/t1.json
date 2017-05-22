@@ -1,0 +1,97 @@
+{
+	"TASK_KEY": "TASK_QA_REVIEW",
+	"LAST_MODIFIED_BY": "WORKFLOW",
+	"MODIFIED_BY": "WORKFLOW",
+	"OPERATIONS": [
+		{
+			"RELATION_LOOKUP_VALUE": "QA",
+			"DEPENDENT_TASK": "TASK_INITIAL_REVIEW",
+			"STRATEGY_BEAN": "RELATIONSHIP_STRATEGY",
+			"RULE": "TASK_READY_FOR_QA",
+			"TYPE": "ASSIGNMENT",
+			"RESULT": {
+				"SUCCESS": [
+					{
+						"TRIGGER_EVENT": "ASSIGNMENT",
+						"EXCHANGE_KEY": "${app.exchange.prefix}_WAP_WAPGRG_INT_TASK_ASSIGNMENT",
+						"RULE": "DEFAULT",
+						"QUEUE": "${app.exchange.prefix}.WAP.WAPGRG.INT.TASK.ASSIGNMENT",
+						"TYPE": "PUBLISH_MESSAGE",
+						"OPERATION_BEAN": "MQ_PUBLISH_OPERATION"
+					}
+				],
+				"FAIL": []
+			},
+			"OPERATION_BEAN": "ASSIGNMENT_OPERATION",
+			"RELATION_LOOKUP_KEY": "MANAGER"
+		},
+		{
+			"RULE": "ONHOLD_QATASK_ON_CASE_REREVIEW",
+			"TYPE": "NO_OPERATION",
+			"RESULT": {
+				"SUCCESS": [
+					{
+						"VALUE": "ONHOLD",
+						"TYPE": "ENTITY_MODIFY",
+						"KEY": "TASK_STATUS"
+					}
+				],
+				"FAIL": []
+			},
+			"OPERATION_BEAN": "NO_OPERATION"
+		},
+		{
+			"RULE": "RESUME_ONHOLD_QATASK_ON_CASE_IRCOMPLETE",
+			"TYPE": "NO_OPERATION",
+			"RESULT": {
+				"SUCCESS": [
+					{
+						"VALUE": "INPROGRESS",
+						"TYPE": "ENTITY_MODIFY",
+						"KEY": "TASK_STATUS"
+					}
+				],
+				"FAIL": []
+			},
+			"OPERATION_BEAN": "NO_OPERATION"
+		}
+	],
+	"TASK_STATUS": "UNASSIGNED",
+	"ESTIMATED_TIME": {
+		"UNIT": "HOURS",
+		"VALUE": 1
+	},
+	"SLA": {
+		"UNIT": "DAYS",
+		"VALUE": 1
+	},
+	"TASK_BEAN_ID": "DEFAULT.WAPTask",
+	"COMMENT": [],
+	"CHECK_LIST": [],
+	"STATUS": "A",
+	"VERTICAL": "1",
+	"DESCRIPTION": "QA Review of Case",
+	"TASK_TYPE": "QA_REVIEW",
+	"WORKABLE_ENTITY": "463",
+	"CREATED_BY": "WORKFLOW",
+	"PROJECT": "1",
+	"DUE_DATE": "2017-01-05T12:51:37.326+0000",
+	"CREATION_DATE": "2017-01-05T04:51:37.327+0000",
+	"TARGET_USER": [],
+	"WORKFLOW_INSTANCE": "446",
+	"MODIFIED_DATE": "2017-01-05T04:51:37.327+0000",
+	"NAME": "QA Review",
+	"SOURCE": "WAP",
+	"FORCED_ASSIGNED": false,
+	"_id": "1448",
+	"_class": "com.ituple.apps.wap.module.task.TaskDTO",
+	"IS_MILE_STONE": false,
+	"THRESHOLD_TIME": {
+		"UNIT": "MINUTE",
+		"VALUE": 90
+	},
+	"ACTIVITY": "445",
+	"PROGRAM": "1",
+	"TASK_SOURCE": "WORKFLOW",
+	"TASK_ID": "T1450-PDX111MBL132"
+}

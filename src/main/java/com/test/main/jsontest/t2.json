@@ -1,0 +1,143 @@
+{
+	"TASK_KEY": "TASK_QA_REVIEW",
+	"ASSIGNED_DATE": "2017-01-05T11:09:31.481+0000",
+	"LAST_MODIFIED_BY": "WORKFLOW",
+	"MODIFIED_BY": "sanjeev.jha@ituple.com",
+	"OPERATIONS": [
+		{
+			"RELATION_LOOKUP_VALUE": "QA",
+			"DEPENDENT_TASK": "TASK_INITIAL_REVIEW",
+			"STRATEGY_BEAN": "RELATIONSHIP_STRATEGY",
+			"RULE": "TASK_READY_FOR_QA",
+			"TYPE": "ASSIGNMENT",
+			"RESULT": {
+				"SUCCESS": [
+					{
+						"TRIGGER_EVENT": "ASSIGNMENT",
+						"EXCHANGE_KEY": "${app.exchange.prefix}_WAP_WAPGRG_INT_TASK_ASSIGNMENT",
+						"RULE": "DEFAULT",
+						"QUEUE": "${app.exchange.prefix}.WAP.WAPGRG.INT.TASK.ASSIGNMENT",
+						"TYPE": "PUBLISH_MESSAGE",
+						"OPERATION_BEAN": "MQ_PUBLISH_OPERATION"
+					}
+				],
+				"FAIL": []
+			},
+			"OPERATION_BEAN": "ASSIGNMENT_OPERATION",
+			"RELATION_LOOKUP_KEY": "MANAGER"
+		},
+		{
+			"RULE": "ONHOLD_QATASK_ON_CASE_REREVIEW",
+			"TYPE": "NO_OPERATION",
+			"RESULT": {
+				"SUCCESS": [
+					{
+						"VALUE": "ONHOLD",
+						"TYPE": "ENTITY_MODIFY",
+						"KEY": "TASK_STATUS"
+					}
+				],
+				"FAIL": []
+			},
+			"OPERATION_BEAN": "NO_OPERATION"
+		},
+		{
+			"RULE": "RESUME_ONHOLD_QATASK_ON_CASE_IRCOMPLETE",
+			"TYPE": "NO_OPERATION",
+			"RESULT": {
+				"SUCCESS": [
+					{
+						"VALUE": "INPROGRESS",
+						"TYPE": "ENTITY_MODIFY",
+						"KEY": "TASK_STATUS"
+					}
+				],
+				"FAIL": []
+			},
+			"OPERATION_BEAN": "NO_OPERATION"
+		}
+	],
+	"TASK_STATUS": "CLOSED",
+	"COMPLETED_ON": "2017-01-05T11:14:25.045+0000",
+	"ESTIMATED_TIME": {
+		"UNIT": "HOURS",
+		"VALUE": 1
+	},
+	"SLA": {
+		"UNIT": "DAYS",
+		"VALUE": 1
+	},
+	"TASK_BEAN_ID": "DEFAULT.WAPTask",
+	"TTL": [
+		{
+			"USER": "sanjeev.jha@ituple.com",
+			"ENTRIES": [
+				{
+					"START_TIME": "2017-01-05T11:13:26.253+0000",
+					"CREATION_TIME": "2017-01-05T11:13:26.253+0000",
+					"UPDATE_TIME": "2017-01-05T11:13:48.032+0000",
+					"STOP_TIME": "2017-01-05T11:13:48.032+0000"
+				},
+				{
+					"START_TIME": "2017-01-05T11:14:12.609+0000",
+					"CREATION_TIME": "2017-01-05T11:14:12.609+0000",
+					"UPDATE_TIME": "2017-01-05T11:14:25.642+0000",
+					"STOP_TIME": "2017-01-05T11:14:25.642+0000"
+				}
+			]
+		}
+	],
+	"COMMENT": [
+		{
+			"CREATED_BY": "sanjeev.jha@ituple.com",
+			"STATUS": "A",
+			"COMMENT_TEXT": "STATUS UPDATE : Complete",
+			"MODIFIED_BY": "sanjeev.jha@ituple.com",
+			"CREATED_ON": "2017-01-05T11:13:46.702+0000",
+			"COMMENT_ID": "COMMENT_T1450-PDX111MBL132_1",
+			"MODIFIED_ON": "2017-01-05T11:13:46.702+0000"
+		},
+		{
+			"CREATED_BY": "sanjeev.jha@ituple.com",
+			"STATUS": "A",
+			"COMMENT_TEXT": "STATUS UPDATE : complete",
+			"MODIFIED_BY": "sanjeev.jha@ituple.com",
+			"CREATED_ON": "2017-01-05T11:14:24.596+0000",
+			"COMMENT_ID": "COMMENT_T1450-PDX111MBL132_2",
+			"MODIFIED_ON": "2017-01-05T11:14:24.596+0000"
+		}
+	],
+	"CLOSED_ON": "2017-01-05T11:14:50.177+0000",
+	"CHECK_LIST": [],
+	"STATUS": "A",
+	"VERTICAL": "1",
+	"DESCRIPTION": "QA Review of Case",
+	"TASK_TYPE": "QA_REVIEW",
+	"WORKABLE_ENTITY": "463",
+	"CREATED_BY": "WORKFLOW",
+	"PROJECT": "1",
+	"DUE_DATE": "2017-01-05T12:51:37.326+0000",
+	"WATCHLIST": [
+		"sanjeev.jha@ituple.com"
+	],
+	"CREATION_DATE": "2017-01-05T04:51:37.327+0000",
+	"TOTAL_TIME": 34000,
+	"ASSIGNED_TO": "sanjeev.jha@ituple.com",
+	"TARGET_USER": [],
+	"WORKFLOW_INSTANCE": "446",
+	"MODIFIED_DATE": "2017-01-05T11:14:25.642+0000",
+	"NAME": "QA Review",
+	"SOURCE": "WAP",
+	"FORCED_ASSIGNED": false,
+	"_id": "1448",
+	"_class": "com.ituple.apps.wap.module.task.TaskDTO",
+	"IS_MILE_STONE": false,
+	"THRESHOLD_TIME": {
+		"UNIT": "MINUTE",
+		"VALUE": 90
+	},
+	"ACTIVITY": "445",
+	"PROGRAM": "1",
+	"TASK_SOURCE": "WORKFLOW",
+	"TASK_ID": "T1450-PDX111MBL132"
+}
